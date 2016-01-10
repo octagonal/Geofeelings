@@ -1,23 +1,18 @@
 var React = require('react');
 var GoogleMap = require('google-map-react');
 var MessageAdd = require('./MessageAdd.react.js');
+var MapRangeSelector = require('./MapRangeSelector.react.js');
 var ReactDOM = require('react-dom');
 var jQuery = require('jquery');
+var $ = require ('jquery');
 var lodash = require('lodash');
 var io = require('socket.io-client');
 
 var style = {
-  position: 'absolute',
-  //width: 40,
   height: 40,
   left: -40 / 2,
   top: -40 / 2,
-
-  border: '5px solid #f44336',
-  borderRadius: 40,
-  backgroundColor: 'white',
   textAlign: 'center',
-  color: '#3f51b5',
   fontSize: 16,
   fontWeight: 'bold',
   padding: 4
@@ -64,10 +59,12 @@ module.exports = MapApp = React.createClass({
           className="map"
           center={[59.938043, 30.337157]}
           zoom={5}>
-          <div className="marker" lat={59.955413} lng={30.337844} style={style}>Hallo</div>
+          <span className="marker label label-default" lat={59.955413} lng={30.337844} style={style}>Default</span>
         </GoogleMap>
         <MessageAdd>
         </MessageAdd>
+        <MapRangeSelector>
+        </MapRangeSelector>
       </div>
     )
   }

@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
       // Render React to a string, passing in our fetched tweets
       var markup = ReactDOMServer.renderToString(
         MapApp({
-          // tweets: tweets
         })
       );
 

@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var jQuery = require('jquery');
 var lodash = require('lodash');
 var sentiment = require('sentiment');
 
@@ -77,7 +76,7 @@ module.exports = MessageAdd = React.createClass({
     return (
 
       <div className="panel panel-default message">
-        <div className="panel-heading" style={{backgroundColor: this.state.feelingColor}}>Dear diary..</div>
+        <div className="panel-heading" style={{backgroundColor: this.state.feelingColor}}>What's up?</div>
         <div className="panel-body">
           <form className="form-horizontal">
             <div className="form-group">
