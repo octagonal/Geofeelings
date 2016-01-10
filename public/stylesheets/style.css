@@ -1,8 +1,20 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Roboto", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.maps-app {
+  height: 500px;
+}
+
+.marker {
+  width:100px;
+}
+
+.panel-heading {
+  transition: background-color 1000ms linear;
 }
