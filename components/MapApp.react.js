@@ -5,7 +5,7 @@ var MapRangeSelector = require('./MapRangeSelector.react.js');
 var ReactDOM = require('react-dom');
 global.jQuery = require('jquery');
 global.$ = require('jquery');
-var lodash = require('lodash');
+var _ = require('lodash');
 var io = require('socket.io-client');
 
 var style = {
@@ -33,10 +33,6 @@ module.exports = MapApp = React.createClass({
 
   },
 
-  componentWillReceiveProps: function(newProps, oldProps){
-    this.setState(this.getInitialState(newProps));
-  },
-
   // Called directly after component rendering, only on client
   componentDidMount: function(){
 
@@ -61,12 +57,24 @@ module.exports = MapApp = React.createClass({
     //google.maps.event.addDomListener(window, "load", initializeMap);
   },
 
+  handleTimeChange: function(event) {
+    tmpMarkers = []
+    $.get("/map/byDate/" + event.min +"/" + event.max , function(data) {
+      data.forEach(function(el){
+        tmpMarkers.push({lat:el.location[0], lng:el.location[1],text:el.body, key:el.location.join("")})
+      })
+      this.setState({markers: tmpMarkers});
+      console.log(this.state.markers);
+    }.bind(this));
+  },
+
   // Render the component
   render: function(){
     return (
       <div className="maps-app">
         <GoogleMap
           className="map"
+          key={1}
           center={[59.938043, 30.337157]}
           zoom={5}>
           {this.state.markers.map(function(marker){
@@ -74,7 +82,7 @@ module.exports = MapApp = React.createClass({
           })}
         </GoogleMap>
         <MessageAdd/>
-        <MapRangeSelector/>
+        <MapRangeSelector handleTimeChange={_.debounce(this.handleTimeChange,700)} />
       </div>
     )
   }

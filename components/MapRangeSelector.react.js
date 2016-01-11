@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var ReactSlider = require('react-slider');
 
-var lodash = require('lodash');
+var _ = require('lodash');
 var moment = require('moment');
 
 global.jQuery = require('jquery');
@@ -10,10 +10,7 @@ global.jQuery = require('jquery');
 // Export the TweetsApp component
 module.exports = MapRangeSelector = React.createClass({
   // Set the initial component state
-  getInitialState: function(props){
-
-    props = props || this.props;
-
+  getInitialState: function(){
     // Set initial application state using props
     return {
       startDate: Date.parse(new Date("2015-01-01")),
@@ -21,11 +18,6 @@ module.exports = MapRangeSelector = React.createClass({
       minDate: Date.parse(new Date("2015-10-01")),
       maxDate: Date.parse(new Date())
     };
-
-  },
-
-  componentWillReceiveProps: function(newProps, oldProps){
-    this.setState(this.getInitialState(newProps));
   },
 
   // Called directly after component rendering, only on client
@@ -51,6 +43,7 @@ module.exports = MapRangeSelector = React.createClass({
       minDate: value[0],
       maxDate: value[1]}
     );
+    this.props.handleTimeChange({min:value[0],max:value[1]});
   },
 
   // Render the component

@@ -3,9 +3,7 @@ var router = express.Router();
 Tweet = require('../models/map');
 
 router.get('/byDate/:dateBegin/:dateEnd', function(req, res, next) {
-  console.log(new Date(req.params.dateBegin));
-  console.log(new Date(req.params.dateEnd));
-  Tweet.getMapDataByDate(new Date(req.params.dateBegin), new Date(req.params.dateEnd), function(tweets) {
+  Tweet.getMapDataByDate(new Date(parseInt(req.params.dateBegin)), new Date(parseInt(req.params.dateEnd)), function(tweets) {
     res.send(tweets);
   });
 });
@@ -50,7 +48,7 @@ router.get('/addSingle', function(req, res, next) {
       , positive: [ "S" ]
       , negative: [ "String" ]
     }
-    , location: [ -73.88, 40.78 ]
+    , location: [ 59.938043, 30.337157 ]
   }
 
       // Create a new model instance with our object
