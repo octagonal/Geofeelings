@@ -47,8 +47,6 @@ module.exports = MapRangeSelector = React.createClass({
   },
 
   handleRangeChanged: function(value){
-    console.log(this.formatDate(value[0]));
-    console.log(this.formatDate(value[1]));
     this.setState({
       minDate: value[0],
       maxDate: value[1]}

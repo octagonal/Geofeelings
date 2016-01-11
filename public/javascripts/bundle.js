@@ -1,11 +1,12 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function (global){
 var React = require('react');
 var GoogleMap = require('google-map-react');
 var MessageAdd = require('./MessageAdd.react.js');
 var MapRangeSelector = require('./MapRangeSelector.react.js');
 var ReactDOM = require('react-dom');
-var jQuery = require('jquery');
-var $ = require('jquery');
+global.jQuery = require('jquery');
+global.$ = require('jquery');
 var lodash = require('lodash');
 var io = require('socket.io-client');
 
@@ -29,7 +30,9 @@ module.exports = MapApp = React.createClass({
     props = props || this.props;
 
     // Set initial application state using props
-    return {};
+    return {
+      markers: []
+    };
   },
 
   componentWillReceiveProps: function (newProps, oldProps) {
@@ -42,10 +45,18 @@ module.exports = MapApp = React.createClass({
     // Preserve self reference
     var self = this;
 
+    tmpMarkers = [];
+    $.get("/map", (function (data) {
+      data.forEach(function (el) {
+        tmpMarkers.push({ lat: el.location[0], lng: el.location[1], text: el.body, key: el.location.join("") });
+      });
+      this.setState({ markers: tmpMarkers });
+      console.log(this.state.markers);
+    }).bind(this));
+
     // Initialize socket.io
     var socket = io.connect();
     socket.on('news', function (data) {
-      console.log(data);
       socket.emit('my other event', { my: 'data' });
     });
 
@@ -63,11 +74,13 @@ module.exports = MapApp = React.createClass({
           className: 'map',
           center: [59.938043, 30.337157],
           zoom: 5 },
-        React.createElement(
-          'span',
-          { className: 'marker label label-default', lat: 59.955413, lng: 30.337844, style: style },
-          'Default'
-        )
+        this.state.markers.map(function (marker) {
+          return React.createElement(
+            'span',
+            { className: 'label label-info', lat: marker.lat, key: marker.key, lng: marker.lng, style: this.style },
+            marker.text
+          );
+        })
       ),
       React.createElement(MessageAdd, null),
       React.createElement(MapRangeSelector, null)
@@ -75,6 +88,7 @@ module.exports = MapApp = React.createClass({
   }
 });
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./MapRangeSelector.react.js":2,"./MessageAdd.react.js":3,"google-map-react":75,"jquery":92,"lodash":98,"react":294,"react-dom":162,"socket.io-client":296}],2:[function(require,module,exports){
 (function (global){
 var React = require('react');
@@ -127,8 +141,6 @@ module.exports = MapRangeSelector = React.createClass({
   },
 
   handleRangeChanged: function (value) {
-    console.log(this.formatDate(value[0]));
-    console.log(this.formatDate(value[1]));
     this.setState({
       minDate: value[0],
       maxDate: value[1] });

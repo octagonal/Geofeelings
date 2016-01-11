@@ -3,8 +3,8 @@ var GoogleMap = require('google-map-react');
 var MessageAdd = require('./MessageAdd.react.js');
 var MapRangeSelector = require('./MapRangeSelector.react.js');
 var ReactDOM = require('react-dom');
-var jQuery = require('jquery');
-var $ = require ('jquery');
+global.jQuery = require('jquery');
+global.$ = require('jquery');
 var lodash = require('lodash');
 var io = require('socket.io-client');
 
@@ -27,6 +27,8 @@ module.exports = MapApp = React.createClass({
 
     // Set initial application state using props
     return {
+      markers: [
+      ]
     };
 
   },
@@ -41,10 +43,18 @@ module.exports = MapApp = React.createClass({
     // Preserve self reference
     var self = this;
 
+      tmpMarkers = []
+      $.get("/map", function(data) {
+        data.forEach(function(el){
+          tmpMarkers.push({lat:el.location[0], lng:el.location[1],text:el.body, key:el.location.join("")})
+        })
+        this.setState({markers: tmpMarkers});
+        console.log(this.state.markers);
+      }.bind(this));
+
     // Initialize socket.io
     var socket = io.connect();
       socket.on('news', function (data) {
-        console.log(data);
         socket.emit('my other event', { my: 'data' });
       });
 
@@ -59,12 +69,12 @@ module.exports = MapApp = React.createClass({
           className="map"
           center={[59.938043, 30.337157]}
           zoom={5}>
-          <span className="marker label label-default" lat={59.955413} lng={30.337844} style={style}>Default</span>
+          {this.state.markers.map(function(marker){
+            return <span className="label label-info" lat={marker.lat} key={marker.key} lng={marker.lng} style={this.style}>{marker.text}</span>;
+          })}
         </GoogleMap>
-        <MessageAdd>
-        </MessageAdd>
-        <MapRangeSelector>
-        </MapRangeSelector>
+        <MessageAdd/>
+        <MapRangeSelector/>
       </div>
     )
   }
