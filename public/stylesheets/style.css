@@ -16,6 +16,50 @@ a {
   color: #00B7FF;
 }
 
+#messages {
+  max-height: 15em;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.marker {
+    background-color: #3498db;
+    height: 7.2em;
+    width: 7.4em;
+    overflow: hidden;
+    text-align: left;
+    border-radius: 0px 5px 5px 5px;
+    border: 1px solid lightgray;
+}
+
+.nav-tabs li.active a {
+  background-color: #303030;
+}
+
+.nav-tabs {
+    border-bottom: none; */
+}
+
+svg {
+  fill: white;
+}
+
+.popover{
+    width:200px;
+    text-align: center;
+}
+
+.panel-body {
+    padding: 5px;
+}
+
+.marker .label {
+    display: inline-block;
+    font-size: 1em;
+    margin-top: 2px;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
 .tag .btn:last-child {
     border-radius: 0px 5px 5px 0px;
 }

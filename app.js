@@ -11,23 +11,31 @@ var io = require( "socket.io" );
 var app = express();
 app.io = io();
 
+//Auth stuff
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Routes init
-var routes = require('./routes/index');
+var routes = require('./routes/index')(passport);
 var users = require('./routes/users');
-var map = require('./routes/map');
+var map = require('./routes/map')(passport);
 
 app.io.on('connection', function (socket) {
   //socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
     console.log(data);
   });
+  socket.on('chat message', function(msg){
+    var socketio = app.get('socketio');
+    socketio.emit(msg.user, msg);
+  });
 });
 
 mongoose.connect('mongodb://localhost/geofeelings');
-
-//Auth stuff
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,9 +49,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Auth stuff
-app.use(passport.initialize());
-app.use(passport.session());
+var flash = require('connect-flash');
+app.use(flash());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
+
 
 app.use('/', routes);
 app.use('/users', users);

@@ -5,6 +5,8 @@ var Else = If.Else;
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var Chat = require('./Chat.react.js');
+
 module.exports = UserModal = React.createClass({
 
     getDefaultProps: function() {
@@ -18,6 +20,12 @@ module.exports = UserModal = React.createClass({
       return false;
     },
 
+    onChat: function(event){
+      this.setState({
+        chat: true
+      })
+    },
+
     render: function() {
         return (
             <div>
@@ -28,11 +36,12 @@ module.exports = UserModal = React.createClass({
 
     renderBody: function() {
      return (this.props.name != "")
-        ? <p className="tag">
-            <span className="btn btn-primary btn-xs">u/{this.props.name}</span>
-            <a href="#" onClick={this.onRemove} className="btn btn-primary btn-xs">X</a>
-            <a href="#" onClick={this.onChat} className="btn btn-primary btn-xs">Chat</a>
-          </p>
+        ? <div>
+            <p className="tag">
+              <span className="btn btn-primary btn-xs">u/{this.props.name}</span>
+              <a href="#" onClick={this.onRemove} className="btn btn-primary btn-xs">X</a>
+            </p>
+          </div>
         : ""
     }
 });

@@ -3,6 +3,7 @@ var GoogleMap = require('google-map-react');
 var MessageAdd = require('./MessageAdd.react.js');
 var MapRangeSelector = require('./MapRangeSelector.react.js');
 var UserModal = require('./UserModal.react.js');
+var NavBar = require('./NavBar.react.js');
 var ActivityModal = require('./ActivityModal.react.js');
 var ReactDOM = require('react-dom');
 global.jQuery = require('jquery');
@@ -10,6 +11,7 @@ global.$ = require('jquery');
 var _ = require('lodash');
 var io = require('socket.io-client');
 var moment = require('moment');
+var colorMapper = require('../util/colorMapper');
 
 var If = require('react-if');
 var Then = If.Then;
@@ -34,8 +36,8 @@ module.exports = MapApp = React.createClass({
     return {
       markers: [
       ],
-      center: [59.938043, 30.337157],
-      zoom:5,
+      center: [50.87906276698436, 4.053740251953059],
+      zoom:9,
       minDate: new moment().subtract("months",3).toDate(),
       maxDate: new Date(),
       query: {},
@@ -65,7 +67,7 @@ module.exports = MapApp = React.createClass({
             text:el.body,
             user: el.author,
             activity:el.activity,
-            key:el.location.join("")+el.body,
+            key:el.location.join(""),
             date: new Date(el.date),
             feeling: el.sentiment.comparative
           })
@@ -92,6 +94,9 @@ module.exports = MapApp = React.createClass({
   },
 
   boundsChanged: function(center, zoom, bounds, marginBounds) {
+    console.log("bounds props");
+    console.log(center);
+    console.log(zoom);
     this.setState({
       center: center,
       zoom: zoom
@@ -179,6 +184,15 @@ module.exports = MapApp = React.createClass({
     this.queryMap("/map/?" + qs.stringify(this.state.query, {encode: false}) );
   },
 
+  createMapOptions: function (maps) {
+    return {
+      panControl: false,
+      mapTypeControl: false,
+      scrollwheel: false,
+      styles: [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
+    }
+  },
+
   setActivity: function(event) {
     if(event == null){
       this.setState({
@@ -219,7 +233,7 @@ module.exports = MapApp = React.createClass({
             text:el.body,
             user: el.author,
             activity:el.activity,
-            key:el.location.join("")+el.body,
+            key:el.location.join(""),
             date: new Date(el.date),
             feeling: el.sentiment.comparative
           })
@@ -258,43 +272,59 @@ module.exports = MapApp = React.createClass({
     return (
 
       <div className="maps-app">
+        <NavBar loggedIn={this.props.loggedIn} username={this.props.username}/>
+        <MessageAdd loggedIn={this.props.loggedIn} />
         <ul className="nav nav-tabs">
           <li className="active"><a href="#map" data-toggle="tab">Map</a></li>
           <li><a href="#stats" data-toggle="tab">Statistics</a></li>
         </ul>
         <div id="myTabContent" className="tab-content">
-          <div className="tab-pane active map-container" id="map">
+          <div className="tab-pane active" id="map">
+          <div className="panel panel-default">
+          <div className="panel panel-body map-container">
           <GoogleMap
             className="map"
             key={1}
+            options={this.createMapOptions}
             onBoundsChange={this.boundsChanged}
             center={this.state.center}
             zoom={this.state.zoom}>
             {this.state.markers.map(function(marker){
               return <div
                 href="#"
+                data-toggle="popover"
+                data-trigger="hover"
+                data-content={marker.text}
                 lat={marker.lat}
                 key={marker.key}
                 lng={marker.lng}
-                className="marker"
-                style={this.style}
+                className="marker panel panel-default clearfix"
+                style={{backgroundColor: colorMapper.makeGradientColor(marker.feeling).cssColor}}
               >
+                <div className="panel-heading">
                 <span
-                  className="label label-info">"{marker.text}"
+                  className="">"{marker.text.substring(7, length)+".."}"
                 </span>
+                </div>
+                <div className="panel-body">
                 <span
                   onClick={function(event){_this.setActivity(event); event.stopPropagation()}}
-                  className="label label-info">{marker.activity}
+                  className="label label-default">{marker.activity}
                 </span>
                 <span
                   onClick={function(event){_this.setAuthor(event); event.stopPropagation()}}
-                  className="label label-info">{marker.user}
+                  className="label label-default label-activity">{marker.user}
                 </span>
+                </div>
               </div>;
             })}
           </GoogleMap>
           </div>
+          </div>
+          </div>
           <div className="tab-pane" id="stats">
+          <div className="panel panel-default">
+          <div className="panel panel-body map-container">
             <div className="row">
               <div className="col-md-6">
                 <p>Entries by happiness</p>
@@ -325,7 +355,6 @@ module.exports = MapApp = React.createClass({
                     }}
                     width={600}
                     height={400}
-                    fill={"white"}
                     margin={{top: 10, bottom: 50, left: 50, right: 10}}
                     xScale={d3.time.scale().domain([this.state.minDate, this.state.maxDate]).range([0, 600-50])}
                     xScaleBrush={d3.time.scale().domain([this.state.minDate, this.state.maxDate]).range([0, 600-50])}
@@ -333,10 +362,11 @@ module.exports = MapApp = React.createClass({
               </div>
             </div>
           </div>
+          </div>
+          </div>
         </div>
         <UserModal setField={this.setAuthor} name={this.state.author} />
-        <ActivityModal setField={this.setActivity} name={this.state.activity} />
-        <MessageAdd />
+        <ActivityModal loggedIn={this.props.loggedIn} username={this.props.username} setField={this.setActivity} name={this.state.activity} />
         <MapRangeSelector handleTimeChange={_.debounce(this.handleTimeChange,700)} />
       </div>
     )

@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  h1 Dear MDOCSSDiary
-    small  (Massively Distributed Online Crowdsourced Social Sentiment Diary)
+  script#initialState !{state}
   section#react-app !{markup}
   script(src="javascripts/bundle.js")
