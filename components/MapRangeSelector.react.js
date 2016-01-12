@@ -35,14 +35,17 @@ module.exports = MapRangeSelector = React.createClass({
     //console.log(msDate);
     //console.log(parsedDate);
     //console.log(parsedDate.format("YYYY-MM-DD") + " (" +  parsedDate.fromNow() + ")");
+    if(parsedDate.isBetween(moment().subtract('days',1), moment())){
+        return [parsedDate.format("YYYY-MM-DD"), "Realtime"];
+    }
     return [parsedDate.format("YYYY-MM-DD"), parsedDate.fromNow()];
   },
 
   handleRangeChanged: function(value){
     this.setState({
       minDate: value[0],
-      maxDate: value[1]}
-    );
+      maxDate: value[1]
+    });
     this.props.handleTimeChange({min:value[0],max:value[1]});
   },
 

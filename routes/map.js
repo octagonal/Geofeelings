@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var qs = require('qs');
+
 Tweet = require('../models/map');
 
 router.get('/byDate/:dateBegin/:dateEnd', function(req, res, next) {
@@ -25,7 +27,20 @@ router.get('/:lat/:lng/:dist/:date', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  Tweet.getMapData(req.params.page, req.params.skip, function(tweets) {
+  var query = {};
+  var obj = qs.parse(req.query);
+  console.log(obj);
+  if(obj.dateRange != null){
+      query.date = { $gte: obj.dateRange.begin, $lte: obj.dateRange.end };
+  }
+  if(obj.author != null){
+      query.author = { $eq: obj.author }
+  }
+  if(obj.activity != null){
+      query.activity = { $eq: obj.activity }
+  }
+  console.log(query);
+  Tweet.getByQuery(query, function(tweets) {
   // Render as JSON
     res.send(tweets);
   });
@@ -59,6 +74,27 @@ router.get('/addSingle', function(req, res, next) {
         if (!err) {
           var socketio = req.app.get('socketio');
           socketio.emit('news', tweet );
+
+          res.status(200);
+          res.send({success: true});
+        } else {
+          res.status(400);
+          res.send({success: false});
+        }
+      });
+});
+
+router.post('/addSingle', function(req, res, next) {
+      // Render React to a string, passing in our fetched tweets
+      console.log(req.body);
+      var tweetEntry = new Map(req.body);
+      console.log(tweetEntry);
+      // Save 'er to the database
+
+      tweetEntry.save(function(err) {
+        if (!err) {
+          var socketio = req.app.get('socketio');
+          socketio.emit('news', req.body );
 
           res.status(200);
           res.send({success: true});

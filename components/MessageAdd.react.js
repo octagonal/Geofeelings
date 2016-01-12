@@ -12,7 +12,8 @@ module.exports = MessageAdd = React.createClass({
 
     // Set initial application state using props
     return {
-      feelingColor: "#00BC8C"
+      feelingColor: "#00BC8C",
+      activity: ""
     };
 
   },
@@ -67,8 +68,44 @@ module.exports = MessageAdd = React.createClass({
     var newColor = this.makeGradientColor(sad, happy, interpVal );
     console.log(newColor);
     this.setState({
-      feelingColor : newColor.cssColor
+      feelingColor : newColor.cssColor,
+      sentiment : messageRating,
+      message : e.target.value
     });
+  },
+
+  handleActivityChange: function(e){
+    this.setState({
+      activity: e.target.value
+    });
+  },
+
+  handleMessageAdd: function(event){
+    event.preventDefault();
+    var _this = this;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log(position.coords);
+      if(_this.state.sentiment == null || _this.state.message == ""){
+        return false;
+      }
+      var tweet = {
+        active     : true
+      , author     : "Anthony"
+      , avatar     : null
+      , body       : _this.state.message
+      , date       : new Date()
+      , sentiment  : _this.state.sentiment
+      , activity   : _this.state.activity
+      , location :  [ position.coords.latitude, position.coords.longitude ]
+    };
+    console.log(tweet);
+    //console.log(JSON.stringify(tweet));
+        $.post( "map/addSingle", tweet)
+          .done(function( data ) {
+          });
+    });
+
+    return false;
   },
 
   // Render the component
@@ -78,10 +115,18 @@ module.exports = MessageAdd = React.createClass({
       <div className="panel panel-default message">
         <div className="panel-heading" style={{backgroundColor: this.state.feelingColor}}>What's up?</div>
         <div className="panel-body">
-          <form className="form-horizontal">
+          <form onSubmit={this.handleMessageAdd} className="form-horizontal">
             <div className="form-group">
-              <div className="col-lg-12">
+            <div className="row">
+              <div className="col-lg-5">
                 <input type="text" className="form-control" id="messageContents" placeholder="How are you feeling?" onChange={this.handleTextChange}/>
+              </div>
+              <div className="col-lg-4">
+                <input type="text" className="form-control" id="activityContents" placeholder="#activity" onChange={this.handleActivityChange} />
+              </div>
+              <div className="col-lg-3">
+                <input type="submit" className="form-control" id="activityContents" placeholder="#activity" onChange={this.handleActivityChange} />
+              </div>
               </div>
             </div>
           </form>

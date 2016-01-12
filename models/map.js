@@ -6,6 +6,7 @@ var schema = new mongoose.Schema({
   , author     : String
   , avatar     : String
   , body       : String
+  , activity   : String
   , date       : Date
   , sentiment  : {
       score: Number
@@ -40,6 +41,20 @@ schema.statics.getMapDataByDate = function(dateBegin, dateEnd, callback){
   console.log(dateBegin);
   console.log(dateEnd);
   Map.find({ date: { $gte: dateBegin, $lte: dateEnd } }).exec(function(err,docs){
+    if(!err) {
+      tweets = docs;  // We got tweets
+      tweets.forEach(function(tweet){
+        tweet.active = true; // Set them to active
+      });
+    }
+    callback(tweets);
+  });
+};
+
+schema.statics.getByQuery = function(query, callback){
+  var tweets = [];
+
+  Map.find(query).exec(function(err,docs){
     if(!err) {
       tweets = docs;  // We got tweets
       tweets.forEach(function(tweet){

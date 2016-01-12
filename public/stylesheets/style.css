@@ -16,12 +16,18 @@ a {
   color: #00B7FF;
 }
 
-.maps-app {
-  height: 500px;
+.tag .btn:last-child {
+    border-radius: 0px 5px 5px 0px;
+}
+.tag .btn:first-child {
+    border-radius: 5px 0 0 5px;
+}
+.tag .btn {
+    border-radius: 0;
 }
 
-.marker {
-  width:100px;
+.map-container {
+  height:500px;
 }
 
 .panel-heading {
