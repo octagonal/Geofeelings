@@ -35,7 +35,7 @@ app.io.on('connection', function (socket) {
   });
 });
 
-mongoose.connect('mongodb://localhost/geofeelings');
+mongoose.connect('mongodb://Bob:1234@madhvani.me/geofeelings');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
