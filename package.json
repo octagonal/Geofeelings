@@ -40,6 +40,7 @@
     "nodemon": "^1.2.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "pioneer": "^0.11.7",
     "qs": "5.2.0",
     "react": "^0.14.3",
     "react-d3-components": "^0.6.0",
