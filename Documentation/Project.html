@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Anthony Madhvani" />
+  <meta name="date" content="2016-01-16" />
+  <title>Geofeelings</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Geofeelings</h1>
+  <p class="author">
+Anthony Madhvani
+  </p>
+  <p class="date">January 16, 2016</p>
+</div>
+<div id="build-instructions" class="slide section level2">
+<h1>Build instructions</h1>
+<pre><code>npm install
+npm start</code></pre>
+<h3 id="links">Links</h3>
+<p><a href="https://young-dusk-9003.herokuapp.com/">Deployment: young-dusk-9003.herokuapp</a></p>
+<p><a href="https://github.com/octagonal/Geofeelings">Repository: octagonal/Geofeelings</a></p>
+<h3 id="deployment">Deployment</h3>
+<p>A simple <code>git push heroku master</code> should suffice. Please create a new issue if this is not the case for you.</p>
+<h3 id="default-users">Default users</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Username</th>
+<th align="left">Password</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ikbeneendocent</td>
+<td align="left">test123</td>
+</tr>
+</tbody>
+</table>
+<p>The MongoDB &amp; Admin credentials will be given during the presentation.</p>
+</div>
+<div id="performance" class="slide section level2">
+<h1>Performance</h1>
+<ul class="incremental">
+<li>Consistently 60FPS</li>
+<li>Network load is reduced to a minimum by using very efficient MongoDB calls</li>
+</ul>
+</div>
+<div id="task-division" class="slide section level2">
+<h1>Task division</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">BE</th>
+<th align="left">FE</th>
+<th align="left">Task in team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Anthony Madhvani</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Backend, frontend</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="workload" class="slide section level2">
+<h1>Workload</h1>
+<p>In hours</p>
+<h3 id="estimated">Estimated</h3>
+<pre><code>                      Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
+                      Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
+Authentication &amp; authorization: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   3.00
+               Statistics view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
+               Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
+                 Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00</code></pre>
+<h3 id="actual">Actual</h3>
+<pre><code>                      Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  10.00
+                      Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   8.00
+Authentication &amp; authorization: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
+               Statistics view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  10.00
+               Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
+                 Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   6.00</code></pre>
+</div>
+<div id="technology" class="slide section level2">
+<h1>Technology</h1>
+<p>This list is not exhaustive. Refer to <code>/package.json</code> for every package used.</p>
+<h3 id="frontend">Frontend</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Jade</td>
+<td align="left">Non-interactive views</td>
+</tr>
+<tr class="even">
+<td align="left">React</td>
+<td align="left">Stateful, interactive views</td>
+</tr>
+<tr class="odd">
+<td align="left">Sentiment</td>
+<td align="left">Calculating sentiment</td>
+</tr>
+<tr class="even">
+<td align="left">Moment</td>
+<td align="left">Date calculations</td>
+</tr>
+<tr class="odd">
+<td align="left">lodash</td>
+<td align="left">Throttling function calls, filtering &amp; mapping the entry list</td>
+</tr>
+<tr class="even">
+<td align="left">d3</td>
+<td align="left">Showing graphs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backend">Backend</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">qs</td>
+<td align="left">Parsing querystrings</td>
+</tr>
+<tr class="even">
+<td align="left">Passport</td>
+<td align="left">Helps with auth</td>
+</tr>
+<tr class="odd">
+<td align="left">Node.js</td>
+<td align="left">Mandatory</td>
+</tr>
+<tr class="even">
+<td align="left">connect-flash</td>
+<td align="left">Flash important messages</td>
+</tr>
+<tr class="odd">
+<td align="left">express-session</td>
+<td align="left">Manage sessions</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="conclusion" class="slide section level2">
+<h1>Conclusion</h1>
+<h3 id="possible-enhancements">Possible enhancements</h3>
+<ul class="incremental">
+<li>Additional filtering</li>
+<li>Graphic the amount of tags</li>
+<li>Showing the trending tags</li>
+</ul>
+<h3 id="difficulties">Difficulties</h3>
+<ul class="incremental">
+<li>JavaScript</li>
+</ul>
+<p>Being used to strongly typed languages, coming to grips with JavaScripts dynamism was quite difficult at first. It requires a great deal of discipline to keep code structured since the compiler won't do it for you.</p>
+<ul class="incremental">
+<li>React</li>
+</ul>
+<p>React does not play along nicely with most &quot;classic&quot; UI libraries such as Jquery or Bootstrap.js, especially when those libraries update state as well. Some nasty hacks were required.</p>
+<h3 id="successes">Successes</h3>
+<ul class="incremental">
+<li>Isomorphic UI</li>
+</ul>
+<p>Rendering on both the server and in the browser was largely a success. This is a substantial improvement over my previous projects since the UI has the best of both worlds: caching, Google indexing, interactivity, etc.</p>
+<ul class="incremental">
+<li>Map &amp; Chat</li>
+</ul>
+<p>The main views of the project were (IMO) implemented very well. State updates instantly across all components, chat works as expected and the timeline is really snappy.</p>
+<h3 id="personal-remarks">Personal remarks</h3>
+<p>By doing this project I came to the realization I would've gladly taken on the FE module as well. Nevertheless, it was a great experience for me because it was my first real attempt at making a (non-tutorial level) project with a JS based stack. If I had to take a guess I would say that the technological skills I learned by doing this project will definitely come in handy in my career.</p>
+<div class="figure">
+<img src="http://i.imgur.com/3OrpgGZ.png" alt="Architecture" />
+<p class="caption">Architecture</p>
+</div>
+</div>
+</body>
+</html>
