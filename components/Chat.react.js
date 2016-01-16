@@ -84,7 +84,7 @@ module.exports = UserModal = React.createClass({
         <div className="panel panel-default message">
           <div className="panel-heading"><p>Chat about '{this.props.user}'</p>
             <form onSubmit={this.handleMessageAdd} className="">
-                  <input disabled={!this.props.loggedIn} autoComplete="off" type="text" className="form-control" id="chatMessage" placeholder="Say hi!"/>
+                  <input required disabled={!this.props.loggedIn} autoComplete="off" type="text" className="form-control" id="chatMessage" placeholder="Say hi!"/>
             </form>
           </div>
           <div className="panel-body">

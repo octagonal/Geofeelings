@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "watch": "watchify main.js -o public/javascripts/bundle.js -v",
     "browserify": "browserify main.js -o public/javascripts/bundle.js",
-    "build": "npm run browserify"
+    "minifycss": "cat public/stylesheets/* | cleancss -o public/app.css",
+    "watchjs": "watchify main.js -o public/javascripts/bundle.js -v",
+    "watchcss": "watch 'npm run minifycss' public/stylesheets/ --wait 10",
+    "watch": "npm run watchjs & npm run watchcss",
+    "build": "npm run browserify; npm run minifycss",
+    "test": "jest"
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
@@ -19,6 +23,7 @@
     "bootstrap": "^3.3.6",
     "browserify": "~6.0.3",
     "browserify-shim": "^3.8.11",
+    "clean-css": "^3.4.9",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.3.5",
     "d3": "^3.5.12",
@@ -27,6 +32,7 @@
     "express-handlebars": "~1.1.0",
     "express-session": "^1.13.0",
     "google-map-react": "^0.9.3",
+    "intro.js": "^1.1.1",
     "jade": "~1.11.0",
     "jquery": "^2.2.0",
     "jquery-ui": "^1.10.5",
@@ -34,8 +40,8 @@
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "moment-range": "^2.1.0",
-    "mongodb": "^2.0.49",
-    "mongoose": "^4.2.9",
+    "mongodb": "^2.1.4",
+    "mongoose": "4.3.6",
     "morgan": "~1.6.1",
     "nodemon": "^1.2.1",
     "passport": "^0.3.2",
@@ -70,5 +76,8 @@
         }
       ]
     ]
+  },
+  "devDependencies": {
+    "jest-cli": "^0.8.2"
   }
 }

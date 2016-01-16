@@ -13,10 +13,6 @@ var io = require('socket.io-client');
 var moment = require('moment');
 var colorMapper = require('../util/colorMapper');
 
-var If = require('react-if');
-var Then = If.Then;
-var Else = If.Else;
-
 var qs = require('qs');
 
 var ReactD3 = require("react-d3-components");
@@ -50,6 +46,19 @@ module.exports = MapApp = React.createClass({
   // Called directly after component rendering, only on client
   componentDidMount: function(){
 
+    var cookies = {};
+      document.cookie.split(';').forEach(function(cookie){
+      var key = cookie.split('=')[0];
+      var val = cookie.split('=')[1];
+      var obj = {};
+      cookies[key.replace(/ /g,'')] = val;
+    })
+    if(cookies.firstTime == null) {
+      var introJs = require('intro.js').introJs;
+      console.log(introJs);
+      introJs().start();
+      document.cookie="firstTime=false";
+    }
     // Preserve self reference
     this.queryMap("/map");
     // Initialize socket.io
@@ -87,6 +96,10 @@ module.exports = MapApp = React.createClass({
         $(ReactDOM.findDOMNode(_this)).find("a[href='#map']").on('shown.bs.tab', function(){
             google.maps.event.trigger(map, 'resize');
         });
+        setInterval(function(){
+          $(ReactDOM.findDOMNode(_this)).find('.marker').parent().css({width:"auto"});
+          $(ReactDOM.findDOMNode(_this)).find('.marker').parent().css({height:"auto"});
+        }, 1);
       }
     });
     //console.log($('[data-toggle="popover"]').popover());
@@ -186,9 +199,9 @@ module.exports = MapApp = React.createClass({
 
   createMapOptions: function (maps) {
     return {
-      panControl: false,
-      mapTypeControl: false,
-      scrollwheel: false,
+      panControl: true,
+      mapTypeControl: true,
+      scrollwheel: true,
       styles: [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
     }
   },
@@ -225,7 +238,7 @@ module.exports = MapApp = React.createClass({
       tmpMarkers = []
       var bootstrap = require('bootstrap');
       $.get(url, function(data) {
-        data.forEach(function(el){
+        data.reverse().forEach(function(el){
           console.log(el.date);
           tmpMarkers.push({
             lat:el.location[0],
@@ -233,7 +246,7 @@ module.exports = MapApp = React.createClass({
             text:el.body,
             user: el.author,
             activity:el.activity,
-            key:el.location.join(""),
+            key:el.location[0].toFixed(2) + el.location[1].toFixed(2),
             date: new Date(el.date),
             feeling: el.sentiment.comparative
           })
@@ -281,7 +294,11 @@ module.exports = MapApp = React.createClass({
         <div id="myTabContent" className="tab-content">
           <div className="tab-pane active" id="map">
           <div className="panel panel-default">
-          <div className="panel panel-body map-container">
+          <div
+            className="panel panel-body"
+            data-intro="This map shows you how people feel all around the world. Click on a marker if you want to filter on a certain user or activity."
+            data-step="2">
+          <div className="map-container">
           <GoogleMap
             className="map"
             key={1}
@@ -299,11 +316,11 @@ module.exports = MapApp = React.createClass({
                 key={marker.key}
                 lng={marker.lng}
                 className="marker panel panel-default clearfix"
-                style={{backgroundColor: colorMapper.makeGradientColor(marker.feeling).cssColor}}
+                style={{width:"100%"}, {height: "100%"}, {backgroundColor: colorMapper.makeGradientColor(marker.feeling).cssColor}}
               >
                 <div className="panel-heading">
                 <span
-                  className="">"{marker.text.substring(7, length)+".."}"
+                  className="">"{marker.text.substring(20, length)+".."}"
                 </span>
                 </div>
                 <div className="panel-body">
@@ -322,9 +339,10 @@ module.exports = MapApp = React.createClass({
           </div>
           </div>
           </div>
+          </div>
           <div className="tab-pane" id="stats">
           <div className="panel panel-default">
-          <div className="panel panel-body map-container">
+          <div className="panel panel-body">
             <div className="row">
               <div className="col-md-6">
                 <p>Entries by happiness</p>

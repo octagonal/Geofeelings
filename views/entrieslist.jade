@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  div
+    form.row(method='post' action='')
+      button(class='btn btn-md btn-primary btn-block', type='submit') Change visibility
+      table(class="table table-striped table-hover")
+        thead
+          tr
+            th Author
+            th Contents
+            th Date of entry
+            th Set invisible
+        tbody
+        each entry in entries
+          tr
+            td #{entry.author}
+            td #{entry.body}
+            td #{entry.date}
+            td
+              label
+                input(type="checkbox" name="entry" value="#{entry.body}")
+                span  (#{entry._id})
+      button(class='btn btn-md btn-primary btn-block', type='submit') Change visibility

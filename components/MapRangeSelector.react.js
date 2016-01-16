@@ -52,7 +52,10 @@ module.exports = MapRangeSelector = React.createClass({
   // Render the component
   render: function(){
     return (
-      <div id="time-range">
+      <div
+        data-intro="Change the slider values if you want to view a different time period."
+        data-step="3"
+        id="time-range">
         <p>
           <span>Entries from </span>
           <label

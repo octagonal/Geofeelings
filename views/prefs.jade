@@ -1,0 +1,22 @@
+extends layout
+block vars
+  - var childTitle = "Preferences"
+block content
+  div
+    div.row
+      form(method='post' action='prefs')
+        div.panel.panel-default
+          .panel-heading Change your preferences
+          .panel-body
+            .checkbox
+              label
+                input(type='checkbox', checked=!currentPrefNamed id='allownamed' name='allownamed' value='true')
+                span  Post anonymously
+            button(class='btn btn-md btn-primary btn-block', type='submit') Change
+              span.clearfix
+        #message
+        - if(message.length > 0){
+          .alert.alert-dismissible.alert-success
+            button(type="button" class="close" data-dismiss="alert")
+            strong #{message}
+        - }

@@ -25,7 +25,7 @@ var schema = new mongoose.Schema({
 // Create a static getTweets method to return tweet data from the db
 schema.statics.getMapData = function(page, skip, callback) {
   var tweets = [];
-  Map.find({}).exec(function(err,docs){
+  Map.find({active : {$eq: true}}).exec(function(err,docs){
     if(!err) {
       tweets = docs;  // We got tweets
       tweets.forEach(function(tweet){
@@ -38,9 +38,8 @@ schema.statics.getMapData = function(page, skip, callback) {
 
 schema.statics.getMapDataByDate = function(dateBegin, dateEnd, callback){
   var tweets = [];
-  console.log(dateBegin);
-  console.log(dateEnd);
-  Map.find({ date: { $gte: dateBegin, $lte: dateEnd } }).exec(function(err,docs){
+
+  Map.find({ date: { $gte: dateBegin, $lte: dateEnd },active : {$eq: true} }).exec(function(err,docs){
     if(!err) {
       tweets = docs;  // We got tweets
       tweets.forEach(function(tweet){
@@ -53,6 +52,7 @@ schema.statics.getMapDataByDate = function(dateBegin, dateEnd, callback){
 
 schema.statics.getByQuery = function(query, callback){
   var tweets = [];
+  query.active = {$eq: true};
 
   Map.find(query).exec(function(err,docs){
     if(!err) {

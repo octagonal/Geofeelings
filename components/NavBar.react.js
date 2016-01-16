@@ -26,15 +26,32 @@ module.exports = UserModal = React.createClass({
         );
     },
 
+    showIntro: function(event){
+      event.preventDefault();
+      var introJs = require('intro.js').introJs;
+      introJs().start();
+      return false;
+    },
+
     renderBody: function() {
      return (this.props.loggedIn != false)
-        ? <p className="">
+        ? <p
+            className=""
+          >
             <span className="label label-default">Logged in as u/{this.props.username}</span>
             <a href="/signout" className="label label-danger">Logout</a>
+            <a href="/user/prefs" className="label label-info">Preferences</a>
+            <a href="" onClick={this.showIntro} className="label label-info">Help</a>
           </p>
-        : <p className="">
-            <a href="/login" className="btn btn-primary btn-xs">Sign In</a>
-            <a href="/signup" className="btn btn-primary btn-xs">register</a>
+        : <p
+            >
+            <a href="/login" className="label label-info">Sign In</a>
+            <a href="/signup"
+              className="label label-info"
+              data-intro="Be sure to register if you want to give it a try."
+              data-step="5">
+              Register</a>
+              <a href="" onClick={this.showIntro} className="label label-info">Help</a>
           </p>
     }
 });

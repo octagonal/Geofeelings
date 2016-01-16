@@ -1,6 +1,6 @@
 var firebaseRef = new Firebase("https://geofeelings.firebaseio.com/");
 var geoFire = new GeoFire(firebaseRef);
-var ref = geoFire.ref(); 
+var ref = geoFire.ref();
 
 geoFire.set("some_key", [37.79, -122.41]).then(function() {
   console.log("Provided key has been added to GeoFire");
@@ -77,4 +77,3 @@ function initializeMap() {
   }, 10);
   google.maps.event.addListener(circle, "drag", updateCriteria);
 }
-

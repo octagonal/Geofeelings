@@ -1,11 +1,12 @@
+block vars
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-    link(rel='stylesheet', href='/stylesheets/jquery-ui.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    - var title = childTitle ? childTitle + " | MDOCSSDiary" : "MDOCSSDiary"
+    title #{title}
+    link(rel='stylesheet', href='/app.css')
   body
-    h1 Dear MDOCSSDiary
+    h1(data-intro="Hello and welcome to MDOCSSDiary!" data-step="1")
+      a(href='/') Dear MDOCSSDiary
       small  (Massively Distributed Online Crowdsourced Social Sentiment Diary)
     block content

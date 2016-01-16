@@ -12,30 +12,6 @@ module.exports = function(passport) {
     });
   });
 
-  router.get('/:dateRange/:locationPoint/:distanceRange/:authorName', function(req, res, next) {
-
-  });
-
-  router.get('/:lat/:lng/:dist', function(req, res, next) {
-    // Render React to a string, passing in our fetched tweets
-    diste = {
-      lat: req.params.lat,
-      lng: req.params.lng,
-      dist: req.params.dist
-    };
-    res.send(diste);
-  });
-
-  router.get('/:lat/:lng/:dist/:date', function(req, res, next) {
-    // Render React to a string, passing in our fetched tweets
-    diste = {
-      lat: req.params.lat,
-      lng: req.params.lng,
-      dist: req.params.dist
-    };
-    res.send(diste);
-  });
-
   router.get('/', function(req, res, next) {
     var query = {};
     var obj = qs.parse(req.query);
@@ -56,52 +32,11 @@ module.exports = function(passport) {
         $eq: obj.activity
       }
     }
+
     console.log(query);
     Tweet.getByQuery(query, function(tweets) {
       // Render as JSON
       res.send(tweets);
-    });
-  });
-
-  router.get('/addSingle', function(req, res, next) {
-    // Render React to a string, passing in our fetched tweets
-
-    var tweet = {
-      active: true,
-      author: "Anthony",
-      avatar: null,
-      body: "Yay",
-      date: new Date(),
-      sentiment: {
-        score: 5,
-        comparative: 2,
-        tokens: ["Hello"],
-        words: ["Hi"],
-        positive: ["S"],
-        negative: ["String"]
-      },
-      location: [59.938043, 30.337157]
-    }
-
-    // Create a new model instance with our object
-    var tweetEntry = new Map(tweet);
-
-    // Save 'er to the database
-    tweetEntry.save(function(err) {
-      if (!err) {
-        var socketio = req.app.get('socketio');
-        socketio.emit('news', tweet);
-
-        res.status(200);
-        res.send({
-          success: true
-        });
-      } else {
-        res.status(400);
-        res.send({
-          success: false
-        });
-      }
     });
   });
 
@@ -110,9 +45,9 @@ module.exports = function(passport) {
     console.log("Sess ID: " + req.user.username);
     var tweetEntry = new Map(req.body);
     tweetEntry.author = req.user.username;
-    console.log(tweetEntry);
-    // Save 'er to the database
-
+    if(req.user.allownamed == false){
+      tweetEntry.author = "Anonymous";
+    }
     tweetEntry.save(function(err) {
       if (!err) {
         var socketio = req.app.get('socketio');

@@ -1,17 +1,20 @@
 extends layout
-
+block vars
+  - var childTitle = "Login"
 block content
-  div.container
+  div
     div.row
-      div.col-sm-6.col-md-4.col-md-offset-4
-        h1.text-center.login-title Sign in to MDOCSSDiary
-          div.account-wall
-            form(class='form-signin', action='/login', method='POST')
-              input(type='text', name='username' class='form-control', placeholder='Email',required, autofocus)
-              input(type='password', name='password' class='form-control', placeholder='Password', required)
-              button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
+      form(class="spannedForm", action='/login', method='POST')
+        div.panel.panel-default
+          .panel-heading Login
+          .panel-body
+            input(type='text', name='username' class='form-control', placeholder='Email',required, autofocus)
+            input(type='password', name='password' class='form-control', placeholder='Password', required)
+            button(class='btn btn-md btn-primary btn-block', type='submit') Login
               span.clearfix
-          a(href='/signup', class='text-center new-account') Create an account
-          #message
-          if message
-            h1.text-center.error-message #{message}
+        #message
+        - if(message.length > 0){
+          .alert.alert-dismissible.alert-success
+            button(type="button" class="close" data-dismiss="alert")
+            strong #{message}
+        - }

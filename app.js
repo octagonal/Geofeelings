@@ -21,8 +21,9 @@ app.use(passport.session());
 
 // Routes init
 var routes = require('./routes/index')(passport);
-var users = require('./routes/users');
+var user = require('./routes/user')(passport);
 var map = require('./routes/map')(passport);
+var admin = require('./routes/admin')(passport);
 
 app.io.on('connection', function (socket) {
   //socket.emit('news', { hello: 'world' });
@@ -58,8 +59,9 @@ initPassport(passport);
 
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/user', user);
 app.use('/map', map);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

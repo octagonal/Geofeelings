@@ -82,13 +82,17 @@ module.exports = MessageAdd = React.createClass({
     console.log("messageadd: " + this.props.loggedIn);
     return (
 
-      <div className="panel panel-default message">
+      <div
+        data-intro="This is how people share their feelings. It's real easy! Just speak your mind and we will automagically deduce how you're feeling."
+        data-step="4"
+        className="panel panel-default message"
+      >
         <div className="panel-heading" style={{backgroundColor: this.state.feelingColor}}>What's up?</div>
         <div className="panel-body">
           <form onSubmit={this.handleMessageAdd} className="form-horizontal">
             <div className="form-group row">
               <div className="col-lg-5">
-                <input type="text" className="form-control" id="messageContents" placeholder="How are you feeling?" onChange={this.handleTextChange}/>
+                <input type="text" required className="form-control" id="messageContents" placeholder="How are you feeling?" onChange={this.handleTextChange}/>
               </div>
               <div className="col-lg-4">
                 <input type="text" className="form-control" id="activityContents" placeholder="#activity" onChange={this.handleActivityChange} />
