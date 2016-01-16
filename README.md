@@ -49,26 +49,31 @@ In hours
 This list is not exhaustive. Refer to `/package.json` for every package used.
 
 #### Frontend
-| Name             | Usage |
-| -----------------|-----|
-| Jade | Non-interactive views   |
-| React| Stateful, interactive views   |
-| Sentiment | Calculating sentiment   |
-| Moment | Date calculations   |
-| lodash | Throttling function calls, filtering & mapping the entry list   |
-| d3 | Showing graphs   |
+| Name      | Usage                                                         |
+| ----------|---------------------------------------------------------------|
+| Jade      | Non-interactive views                                         |
+| React     | Stateful, interactive views                                   |
+| Sentiment | Calculating sentiment                                         |
+| Moment    | Date calculations                                             |
+| lodash    | Throttling function calls, filtering & mapping the entry list |
+| d3        | Showing graphs                                                |
 
 #### Backend
-| Name             | Why |
-| -----------------|-----|
-| qs | Parsing querystrings  |
-| Passport | Helps with auth   |
-| Node.js | Mandatory   |
-| connect-flash | Flash important messages   |
-| express-session | Manage sessions |
+| Name             | Why                      |
+| -----------------|--------------------------|
+| qs               | Parsing querystrings     |
+| Passport         | Helps with auth          |
+| Node.js          | Mandatory                |
+| connect-flash    | Flash important messages |
+| express-session  | Manage sessions          |
 
 ## Architecture
 ![Demo](http://i.imgur.com/3OrpgGZ.png)
+
+## Possible enhancements
+* Additional filtering
+* Graphic the amount of tags
+* Showing the trending tags
 
 ## Conclusion
 
