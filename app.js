@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 // Socket init
-var io = require( "socket.io" );
+var io = require("socket.io");
 var app = express();
 app.io = io();
 

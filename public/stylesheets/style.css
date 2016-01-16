@@ -63,6 +63,17 @@ h1 a:hover {
   color: white;
 }
 
+body:after {
+  content: "";
+  background: url("http://static.simpledesktops.com/uploads/desktops/2013/06/11/pixelmavs.png");
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
 
 svg {
   fill: white;
