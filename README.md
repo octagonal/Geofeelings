@@ -1,5 +1,7 @@
 # Geofeelings
 
+Anthony Madhvani - 3NMCT
+
 [Demo](https://young-dusk-9003.herokuapp.com/)
 
 ## Build instructions
