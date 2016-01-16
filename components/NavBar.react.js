@@ -35,13 +35,11 @@ module.exports = UserModal = React.createClass({
 
     renderBody: function() {
      return (this.props.loggedIn != false)
-        ? <p
-            className=""
-          >
+        ? <p>
             <span className="label label-default">Logged in as u/{this.props.username}</span>
             <a href="/signout" className="label label-danger">Logout</a>
             <a href="/user/prefs" className="label label-info">Preferences</a>
-            <a href="" onClick={this.showIntro} className="label label-info">Help</a>
+            <a onClick={this.showIntro} className="label label-info">Help</a>
           </p>
         : <p
             >
@@ -51,7 +49,7 @@ module.exports = UserModal = React.createClass({
               data-intro="Be sure to register if you want to give it a try."
               data-step="5">
               Register</a>
-              <a href="" onClick={this.showIntro} className="label label-info">Help</a>
+              <a onClick={this.showIntro} className="label label-info">Help</a>
           </p>
     }
 });

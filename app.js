@@ -15,7 +15,13 @@ app.io = io();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
+app.use(
+  expressSession({
+    secret: 'mySecretKey',
+    resave: true,
+    saveUninitialized: true
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 

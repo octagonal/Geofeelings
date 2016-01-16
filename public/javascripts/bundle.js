@@ -893,83 +893,81 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 module.exports = UserModal = React.createClass({
-  displayName: 'UserModal',
+    displayName: 'UserModal',
 
-  getDefaultProps: function () {
-    return {};
-  },
+    getDefaultProps: function () {
+        return {};
+    },
 
-  onRemove: function (event) {
-    event.preventDefault();
-    this.props.setField(null);
-    return false;
-  },
+    onRemove: function (event) {
+        event.preventDefault();
+        this.props.setField(null);
+        return false;
+    },
 
-  render: function () {
-    return React.createElement(
-      'div',
-      null,
-      this.renderBody()
-    );
-  },
+    render: function () {
+        return React.createElement(
+            'div',
+            null,
+            this.renderBody()
+        );
+    },
 
-  showIntro: function (event) {
-    event.preventDefault();
-    var introJs = require('intro.js').introJs;
-    introJs().start();
-    return false;
-  },
+    showIntro: function (event) {
+        event.preventDefault();
+        var introJs = require('intro.js').introJs;
+        introJs().start();
+        return false;
+    },
 
-  renderBody: function () {
-    return this.props.loggedIn != false ? React.createElement(
-      'p',
-      {
-        className: ''
-      },
-      React.createElement(
-        'span',
-        { className: 'label label-default' },
-        'Logged in as u/',
-        this.props.username
-      ),
-      React.createElement(
-        'a',
-        { href: '/signout', className: 'label label-danger' },
-        'Logout'
-      ),
-      React.createElement(
-        'a',
-        { href: '/user/prefs', className: 'label label-info' },
-        'Preferences'
-      ),
-      React.createElement(
-        'a',
-        { href: '', onClick: this.showIntro, className: 'label label-info' },
-        'Help'
-      )
-    ) : React.createElement(
-      'p',
-      null,
-      React.createElement(
-        'a',
-        { href: '/login', className: 'label label-info' },
-        'Sign In'
-      ),
-      React.createElement(
-        'a',
-        { href: '/signup',
-          className: 'label label-info',
-          'data-intro': 'Be sure to register if you want to give it a try.',
-          'data-step': '5' },
-        'Register'
-      ),
-      React.createElement(
-        'a',
-        { href: '', onClick: this.showIntro, className: 'label label-info' },
-        'Help'
-      )
-    );
-  }
+    renderBody: function () {
+        return this.props.loggedIn != false ? React.createElement(
+            'p',
+            null,
+            React.createElement(
+                'span',
+                { className: 'label label-default' },
+                'Logged in as u/',
+                this.props.username
+            ),
+            React.createElement(
+                'a',
+                { href: '/signout', className: 'label label-danger' },
+                'Logout'
+            ),
+            React.createElement(
+                'a',
+                { href: '/user/prefs', className: 'label label-info' },
+                'Preferences'
+            ),
+            React.createElement(
+                'a',
+                { onClick: this.showIntro, className: 'label label-info' },
+                'Help'
+            )
+        ) : React.createElement(
+            'p',
+            null,
+            React.createElement(
+                'a',
+                { href: '/login', className: 'label label-info' },
+                'Sign In'
+            ),
+            React.createElement(
+                'a',
+                { href: '/signup',
+                    className: 'label label-info',
+                    'data-intro': 'Be sure to register if you want to give it a try.',
+                    'data-step': '5' },
+                'Register'
+            ),
+            React.createElement(
+                'a',
+                { onClick: this.showIntro, className: 'label label-info' },
+                'Help'
+            )
+        );
+    }
 });
 
 },{"intro.js":95,"react":325,"react-dom":192,"react-if":193}],7:[function(require,module,exports){
