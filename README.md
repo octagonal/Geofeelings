@@ -1,12 +1,15 @@
-# Geofeelings
-
-Anthony Madhvani - 3NMCT
-
-[Demo](https://young-dusk-9003.herokuapp.com/)
+% Geofeelings
+% Anthony Madhvani
+% January 16, 2016
 
 ## Build instructions
     npm install
     npm start
+
+### Links
+[Deployment: young-dusk-9003.herokuapp](https://young-dusk-9003.herokuapp.com/)
+
+[Repository: octagonal/Geofeelings](https://github.com/octagonal/Geofeelings)
 
 ### Deployment
 A simple `git push heroku master` should suffice. Please create a new issue if this is not the case for you.
@@ -27,8 +30,10 @@ The MongoDB & Admin credentials will be given during the presentation.
 | -----------------|---|---|-------------------|
 | Anthony Madhvani | Y | N | Backend, frontend |
 
-## Estimated workload
+## Workload
 In hours
+
+### Estimated
 
                           Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
                           Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
@@ -37,8 +42,7 @@ In hours
                    Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
                      Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
 
-## Actual workload
-In hours
+### Actual
 
                           Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  10.00
                           Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   8.00
@@ -47,10 +51,10 @@ In hours
                    Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
                      Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   6.00
 
-### Technology
+## Technology
 This list is not exhaustive. Refer to `/package.json` for every package used.
 
-#### Frontend
+### Frontend
 | Name      | Usage                                                         |
 | ----------|---------------------------------------------------------------|
 | Jade      | Non-interactive views                                         |
@@ -60,7 +64,7 @@ This list is not exhaustive. Refer to `/package.json` for every package used.
 | lodash    | Throttling function calls, filtering & mapping the entry list |
 | d3        | Showing graphs                                                |
 
-#### Backend
+### Backend
 | Name             | Why                      |
 | -----------------|--------------------------|
 | qs               | Parsing querystrings     |
@@ -69,15 +73,13 @@ This list is not exhaustive. Refer to `/package.json` for every package used.
 | connect-flash    | Flash important messages |
 | express-session  | Manage sessions          |
 
-## Architecture
-![Demo](http://i.imgur.com/3OrpgGZ.png)
 
-## Possible enhancements
+## Conclusion
+
+### Possible enhancements
 * Additional filtering
 * Graphic the amount of tags
 * Showing the trending tags
-
-## Conclusion
 
 ### Difficulties
 * JavaScript
@@ -100,3 +102,5 @@ The main views of the project were (IMO) implemented very well. State updates in
 ### Personal remarks
 
 By doing this project I came to the realization I would've gladly taken on the FE module as well. Nevertheless, it was a great experience for me because it was my first real attempt at making a (non-tutorial level) project with a JS based stack. If I had to take a guess I would say that the technological skills I learned by doing this project will definitely come in handy in my career.
+
+![Architecture](http://i.imgur.com/3OrpgGZ.png)
