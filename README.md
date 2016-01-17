@@ -2,6 +2,8 @@
 % Anthony Madhvani
 % January 16, 2016
 
+[![Build Status](https://travis-ci.org/octagonal/Geofeelings.svg?branch=master)](https://travis-ci.org/octagonal/Geofeelings)
+
 ## Build instructions
     npm install
     npm start
