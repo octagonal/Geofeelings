@@ -89,7 +89,7 @@ module.exports = MapRangeSelector = React.createClass({
         id="time-range">
         <p>
           <a href="#" className="label label-info" onClick={this.play}>Play</a>
-          <span>Entries from </span>
+          <span> Entries from </span>
           <label
             title="" data-original-title=""
             className="dateIndicator label label-info"
