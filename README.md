@@ -7,7 +7,7 @@
 
 ### Status
 
-[![Build Status](https://travis-ci.org/octagonal/Geofeelings.png?branch=master)](https://travis-ci.org/octagonal/Geofeelings){#id .class width=90 height=30px}
+[![Build Status](https://travis-ci.org/octagonal/Geofeelings.png?branch=master)](https://travis-ci.org/octagonal/Geofeelings)
 
 ### Instructions
 
