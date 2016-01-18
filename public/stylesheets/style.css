@@ -162,9 +162,11 @@ svg {
 .horizontal-slider .bar {
     top: 20px;
     height: 10px;
+    transition: all .5s ease-in-out;
 }
 .horizontal-slider .handle {
     top: 1px;
+    transition: all .5s ease-in-out;
     width: 50px;
     height: 48px;
     line-height: 48px;

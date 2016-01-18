@@ -385,7 +385,7 @@ module.exports = MapApp = React.createClass({
         </div>
         <UserModal setField={this.setAuthor} name={this.state.author} />
         <ActivityModal loggedIn={this.props.loggedIn} username={this.props.username} setField={this.setActivity} name={this.state.activity} />
-        <MapRangeSelector handleTimeChange={_.debounce(this.handleTimeChange,700)} />
+        <MapRangeSelector handleTimeChange={_.debounce(this.handleTimeChange,700)} handleTimeChangeNonDiscrete={this.handleTimeChange} />
       </div>
     )
   }

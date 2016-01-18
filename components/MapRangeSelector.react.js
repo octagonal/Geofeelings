@@ -41,12 +41,43 @@ module.exports = MapRangeSelector = React.createClass({
     return [parsedDate.format("YYYY-MM-DD"), parsedDate.fromNow()];
   },
 
+  play: function(event){
+    event.preventDefault();
+    var initStartDate = this.state.minDate;
+    var initEndDate = this.state.maxDate;
+    var self = this;
+    _.forEach(
+      _.range(initStartDate,initEndDate+(initEndDate-initStartDate)/20,(initEndDate-initStartDate)/20)
+      , function(key,it){
+        _.delay(
+          function(time){
+            console.log(time);
+            console.log(moment(time).fromNow());
+            self.handleRangeChangedNonDiscrete([initStartDate,time]);
+          }
+          ,it*500,
+          key
+        )
+      }
+    );
+    return false;
+  },
+
   handleRangeChanged: function(value){
+    this.setDateRange(value);
+    this.props.handleTimeChange({min:value[0],max:value[1]});
+  },
+
+  handleRangeChangedNonDiscrete: function(value){
+    this.setDateRange(value);
+    this.props.handleTimeChangeNonDiscrete({min:value[0],max:value[1]});
+  },
+
+  setDateRange: function(value){
     this.setState({
       minDate: value[0],
       maxDate: value[1]
     });
-    this.props.handleTimeChange({min:value[0],max:value[1]});
   },
 
   // Render the component
@@ -57,6 +88,7 @@ module.exports = MapRangeSelector = React.createClass({
         data-step="3"
         id="time-range">
         <p>
+          <a href="#" className="label label-info" onClick={this.play}>Play</a>
           <span>Entries from </span>
           <label
             title="" data-original-title=""
@@ -83,9 +115,8 @@ module.exports = MapRangeSelector = React.createClass({
         </p>
         <ReactSlider
           className='horizontal-slider'
-          value={this.state.value}
+          value={[this.state.minDate, this.state.maxDate]}
           onChange={this.handleRangeChanged}
-          defaultValue={[this.state.minDate, this.state.maxDate]}
           withBars
           min={this.state.startDate}
           max={this.state.endDate}
