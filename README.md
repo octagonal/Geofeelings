@@ -2,19 +2,26 @@
 % Anthony Madhvani
 % January 16, 2016
 
-[![Build Status](https://travis-ci.org/octagonal/Geofeelings.svg?branch=master)](https://travis-ci.org/octagonal/Geofeelings)
 
-## Build instructions
+## Build 
+
+### Status
+
+[![Build Status](https://travis-ci.org/octagonal/Geofeelings.png?branch=master)](https://travis-ci.org/octagonal/Geofeelings){#id .class width=90 height=30px}
+
+### Instructions
+
     npm install
     npm start
 
 ### Links
-[Deployment: young-dusk-9003.herokuapp](https://young-dusk-9003.herokuapp.com/)
+
+[Production: young-dusk-9003.herokuapp](https://young-dusk-9003.herokuapp.com/)
 
 [Repository: octagonal/Geofeelings](https://github.com/octagonal/Geofeelings)
 
 ### Deployment
-A simple `git push heroku master` should suffice. Please create a new issue if this is not the case for you.
+Deployment is handled by Travis CI.
 
 ### Default users
 | Username         | Password |
@@ -37,21 +44,21 @@ In hours
 
 ### Estimated
 
-                          Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
-                          Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-    Authentication & authorization: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   3.00
-                   Statistics view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
-                   Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-                     Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
+                          Map view: *************************5.00
+                          Timeline: ********************4.00
+    Authentication & authorization: ***************3.00
+                   Statistics view: *************************5.00
+                   Entry filtering: ********************4.00
+                     Activity chat: *************************5.00
 
 ### Actual
 
-                          Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  10.00
-                          Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   8.00
-    Authentication & authorization: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-                   Statistics view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  10.00
-                   Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-                     Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   6.00
+                          Map view: *************************10.00
+                          Timeline: ********************8.00
+    Authentication & authorization: **********4.00
+                   Statistics view: *************************10.00
+                   Entry filtering: **********4.00
+                     Activity chat: ***************6.00
 
 ## Technology
 This list is not exhaustive. Refer to `/package.json` for every package used.
@@ -106,3 +113,5 @@ The main views of the project were (IMO) implemented very well. State updates in
 By doing this project I came to the realization I would've gladly taken on the FE module as well. Nevertheless, it was a great experience for me because it was my first real attempt at making a (non-tutorial level) project with a JS based stack. If I had to take a guess I would say that the technological skills I learned by doing this project will definitely come in handy in my career.
 
 ![Architecture](http://i.imgur.com/3OrpgGZ.png)
+
+![Deployment](http://i.imgur.com/q3jhExz.png)

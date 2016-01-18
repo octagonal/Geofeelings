@@ -23,19 +23,18 @@ Anthony Madhvani
   </p>
   <p class="date">January 16, 2016</p>
 </div>
-<div class="slide section level2">
-
-<p><a href="https://travis-ci.org/octagonal/Geofeelings"><img src="https://travis-ci.org/octagonal/Geofeelings.png?branch=master" alt="Build Status" /></a></p>
-</div>
-<div id="build-instructions" class="slide section level2">
-<h1>Build instructions</h1>
+<div id="build" class="slide section level2">
+<h1>Build</h1>
+<h3 id="status">Status</h3>
+<p><a href="https://travis-ci.org/octagonal/Geofeelings" id="id" class="class" width="90" height="30px"><img src="https://travis-ci.org/octagonal/Geofeelings.png?branch=master" alt="Build Status" /></a></p>
+<h3 id="instructions">Instructions</h3>
 <pre><code>npm install
 npm start</code></pre>
 <h3 id="links">Links</h3>
-<p><a href="https://young-dusk-9003.herokuapp.com/">Deployment: young-dusk-9003.herokuapp</a></p>
+<p><a href="https://young-dusk-9003.herokuapp.com/">Production: young-dusk-9003.herokuapp</a></p>
 <p><a href="https://github.com/octagonal/Geofeelings">Repository: octagonal/Geofeelings</a></p>
 <h3 id="deployment">Deployment</h3>
-<p>A simple <code>git push heroku master</code> should suffice. Please create a new issue if this is not the case for you.</p>
+<p>Deployment is handled by Travis CI.</p>
 <h3 id="default-users">Default users</h3>
 <table>
 <thead>
@@ -85,19 +84,19 @@ npm start</code></pre>
 <h1>Workload</h1>
 <p>In hours</p>
 <h3 id="estimated">Estimated</h3>
-<pre><code>                      Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
-                      Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-Authentication &amp; authorization: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   3.00
-               Statistics view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00
-               Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-                 Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   5.00</code></pre>
+<pre><code>                      Map view: *************************5.00
+                      Timeline: ********************4.00
+Authentication &amp; authorization: ***************3.00
+               Statistics view: *************************5.00
+               Entry filtering: ********************4.00
+                 Activity chat: *************************5.00</code></pre>
 <h3 id="actual">Actual</h3>
-<pre><code>                      Map view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  10.00
-                      Timeline: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   8.00
-Authentication &amp; authorization: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-               Statistics view: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇  10.00
-               Entry filtering: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   4.00
-                 Activity chat: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇   6.00</code></pre>
+<pre><code>                      Map view: *************************10.00
+                      Timeline: ********************8.00
+Authentication &amp; authorization: **********4.00
+               Statistics view: *************************10.00
+               Entry filtering: **********4.00
+                 Activity chat: ***************6.00</code></pre>
 </div>
 <div id="technology" class="slide section level2">
 <h1>Technology</h1>
@@ -200,6 +199,10 @@ Authentication &amp; authorization: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇�
 <div class="figure">
 <img src="http://i.imgur.com/3OrpgGZ.png" alt="Architecture" />
 <p class="caption">Architecture</p>
+</div>
+<div class="figure">
+<img src="http://i.imgur.com/q3jhExz.png" alt="Deployment" />
+<p class="caption">Deployment</p>
 </div>
 </div>
 </body>
