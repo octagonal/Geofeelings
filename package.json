@@ -10,7 +10,7 @@
     "watchcss": "watch 'npm run minifycss' public/stylesheets/ --wait 10",
     "watch": "npm run watchjs & npm run watchcss",
     "build": "npm run browserify; npm run minifycss",
-    "test": "jest"
+    "test": "jest -- SystemUtils; mocha __tests__/API/*"
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
@@ -64,7 +64,13 @@
   },
   "engines": {
     "node": "5.4.1",
-    "npm":"3.5.3"
+    "npm": "3.5.3"
+  },
+  "jade":{
+  "testPathDirs": ["<rootDir>/__tests__"],
+	"testDirectoryName": "SystemUtils",
+  "testFileExtensions": ["es6", "js", "jsx", "coffee"],
+  "moduleFileExtensions": ["js", "json", "es6", "jsx"]
   },
   "browserify": {
     "transform": [
@@ -79,6 +85,9 @@
     ]
   },
   "devDependencies": {
-    "jest-cli": "^0.8.2"
+    "jest-cli": "^0.8.2",
+    "mocha": "^2.3.4",
+    "should": "^8.1.1",
+    "supertest": "^1.1.0"
   }
 }
