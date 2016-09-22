@@ -1,6 +1,4 @@
-% Geofeelings
-% Anthony Madhvani
-% January 16, 2016
+# Geofeelings, Anthony Madhvani, January 16, 2016
 
 
 ## Build 
@@ -15,8 +13,6 @@
     npm start
 
 ### Links
-
-[Production: young-dusk-9003.herokuapp](https://young-dusk-9003.herokuapp.com/)
 
 [Repository: octagonal/Geofeelings](https://github.com/octagonal/Geofeelings)
 
