@@ -12,6 +12,8 @@
     npm install
     npm start
 
+A local version of mongoDB must be running.
+
 ### Links
 
 [Repository: octagonal/Geofeelings](https://github.com/octagonal/Geofeelings)
