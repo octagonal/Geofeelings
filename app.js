@@ -42,7 +42,7 @@ app.io.on('connection', function (socket) {
   });
 });
 
-mongoose.connect('mongodb://Bob:1234@128.199.48.144/geofeelings');
+mongoose.connect('mongodb://localhost/geofeelings');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
